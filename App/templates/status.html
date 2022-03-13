@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <h1>Status</h1>
+
+
+    {% if data != "No data yet available" %}
+    {{ data|safe }}
+    {% else %}
+    <p>No data yet available</p>
+    {% endif %}
+
+{% endblock %}

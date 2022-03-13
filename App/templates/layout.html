@@ -6,6 +6,15 @@
     </head>
     <body>
 
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('status') }}">Status</a></li>
+                <li><a href="{{ url_for('locations') }}">Locations</a></li>
+                <li><a href="{{ url_for('batteries') }}">Batteries</a></li>
+            </ul>
+        </nav>
+
         <!-- Content section -->
 
           {% block content %}
