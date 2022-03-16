@@ -73,5 +73,11 @@ def status():
         return render_template('status.html')
 
 
+@app.route('/settings', methods=['GET'])
+def settings():
+
+    return render_template('settings.html')
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port="8766", debug=True)
