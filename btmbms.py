@@ -26,6 +26,12 @@ def import_from_status(file_name):
 
 	df = pd.read_csv(file_name)
 	print(df.columns)
+
+	# building Status.csv
+	df.to_csv("Data//" + file_names[0] + ".csv", sep=",", index=False)
+	# END building Status.csv
+
+	# building Batteries.csv
 	unique_batteries = df[file_columns[0][0]].unique()
 	print(unique_batteries)
 
@@ -42,6 +48,7 @@ def import_from_status(file_name):
 
 
 	x.close()
+	# END building Batteries.csv
 
 
 if __name__ == '__main__':
