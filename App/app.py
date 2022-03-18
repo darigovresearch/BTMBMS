@@ -25,13 +25,29 @@ def home():
         return render_template('index.html')
 
 
-@app.route('/batteries', methods=['GET'])
+@app.route('/batteries', methods=['POST', 'GET'])
 def batteries():
 
     df = pd.read_csv("..//Data//Batteries.csv")
     parsed_data = df.to_html()
 
     if request.method == 'GET':
+        return render_template(
+                                'batteries.html',
+                                data=parsed_data
+                              )
+    elif request.method == 'POST':
+        form_data = request.form
+        print(form_data)
+        battery_name = form_data["Battery-name"]
+
+        # adding value
+        df.loc[len(df.index)] = [battery_name]
+        # saving to csv
+        df.to_csv("..//Data//Batteries.csv", sep=",", index=False)
+
+        # rendering new result
+        parsed_data = df.to_html()
         return render_template(
                                 'batteries.html',
                                 data=parsed_data

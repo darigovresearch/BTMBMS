@@ -10,4 +10,17 @@
     <p>No data yet available</p>
     {% endif %}
 
+    <h2>Add battery</h2>
+
+    <form action="/batteries" method="POST">
+        <div class="form-group">
+
+	    	<label>Battery name</label>
+	    	<input type="text" name="Battery-name" id="Battery-name">
+	    	
+		</div>
+    	<button type="submit">Add</button>
+    </form>
+
+
 {% endblock %}
