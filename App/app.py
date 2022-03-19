@@ -73,13 +73,33 @@ def locations():
         return render_template('locations.html')
 
 
-@app.route('/status', methods=['GET'])
+@app.route('/status', methods=['POST', 'GET'])
 def status():
 
     df = pd.read_csv("..//Data//Status.csv")
     parsed_data = df.to_html()
 
     if request.method == 'GET':
+        return render_template(
+                                'status.html',
+                                data=parsed_data
+                              )
+    elif request.method == 'POST':
+        form_data = request.form
+        print(form_data)
+        battery_name = form_data["Battery-name"]
+        soc_name = form_data["SOC"]
+        date_name = form_data["Date"]
+        time_name = form_data["Time"]
+        notes_name = form_data["Notes"]
+
+        # adding value
+        df.loc[len(df.index)] = [battery_name,soc_name, date_name, time_name, notes_name]
+        # saving to csv
+        df.to_csv("..//Data//Status.csv", sep=",", index=False)
+
+        # rendering new result
+        parsed_data = df.to_html()
         return render_template(
                                 'status.html',
                                 data=parsed_data

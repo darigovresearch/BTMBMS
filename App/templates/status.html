@@ -10,4 +10,25 @@
     <p>No data yet available</p>
     {% endif %}
 
+    <h2>Add status</h2>
+
+    <form action="/status" method="POST">
+    	<label>Battery name</label>
+    	<input type="text" name="Battery-name" id="Battery-name">
+    	<br>
+    	<label>SOC</label>
+    	<input type="text" name="SOC" id="SOC">
+    	<br>
+    	<label>Date</label>
+    	<input type="text" name="Date" id="Date">
+    	<br>
+    	<label>Time</label>
+    	<input type="text" name="Time" id="Time">
+    	<br>
+    	<label>Notes</label>
+    	<input type="text" name="Notes" id="Notes">
+    	<br>
+    	<button>Add</button>
+    </form>
+
 {% endblock %}
