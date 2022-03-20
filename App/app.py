@@ -57,13 +57,32 @@ def batteries():
         return render_template('batteries.html')
 
 
-@app.route('/locations', methods=['GET'])
+@app.route('/locations', methods=['POST', 'GET'])
 def locations():
 
     df = pd.read_csv("..//Data//Locations.csv")
     parsed_data = df.to_html()
 
     if request.method == 'GET':
+        return render_template(
+                                'locations.html',
+                                data=parsed_data
+                              )
+    elif request.method == 'POST':
+        form_data = request.form
+        print(form_data)
+        battery_name = form_data["Battery-name"]
+        location_name = form_data["Location"]
+        start_name = form_data["Start"]
+        end_name = form_data["End"]
+
+        # adding value
+        df.loc[len(df.index)] = [battery_name, location_name, start_name, end_name]
+        # saving to csv
+        df.to_csv("..//Data//Locations.csv", sep=",", index=False)
+
+        # rendering new result
+        parsed_data = df.to_html()
         return render_template(
                                 'locations.html',
                                 data=parsed_data

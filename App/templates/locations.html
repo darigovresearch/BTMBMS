@@ -10,4 +10,22 @@
     <p>No data yet available</p>
     {% endif %}
 
+    <h2>Add location</h2>
+
+    <form action="/locations" method="POST">
+    	<label>Battery name</label>
+    	<input type="text" name="Battery-name" id="Battery-name">
+    	<br>
+    	<label>Location</label>
+    	<input type="text" name="Location" id="Location">
+    	<br>
+    	<label>Start</label>
+    	<input type="text" name="Start" id="Start">
+    	<br>
+    	<label>End</label>
+    	<input type="text" name="End" id="End">
+    	<br>
+    	<button>Add</button>
+    </form>
+
 {% endblock %}
