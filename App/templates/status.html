@@ -3,6 +3,16 @@
 
     <h1>Status</h1>
 
+    <h2>Latest status</h2>
+
+    {% if latest_data != "No data yet available" %}
+    {{ latest_data|safe }}
+    {% else %}
+    <p>No data yet available</p>
+    {% endif %}
+
+
+    <h2>All historic statuses</h2>
 
     {% if data != "No data yet available" %}
     {{ data|safe }}

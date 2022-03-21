@@ -98,10 +98,16 @@ def status():
     df = pd.read_csv("..//Data//Status.csv")
     parsed_data = df.to_html()
 
+    # calculating latest data
+    latest_df = df.sort_values('Date').groupby('Battery').tail(1)
+    latest_df.reset_index(drop=True, inplace=True)
+    latest_data = latest_df.to_html()
+
     if request.method == 'GET':
         return render_template(
                                 'status.html',
-                                data=parsed_data
+                                data=parsed_data,
+                                latest_data=latest_data
                               )
     elif request.method == 'POST':
         form_data = request.form
@@ -113,15 +119,20 @@ def status():
         notes_name = form_data["Notes"]
 
         # adding value
-        df.loc[len(df.index)] = [battery_name,soc_name, date_name, time_name, notes_name]
+        df.loc[len(df.index)] = [battery_name, soc_name, date_name, time_name, notes_name]
         # saving to csv
         df.to_csv("..//Data//Status.csv", sep=",", index=False)
 
         # rendering new result
         parsed_data = df.to_html()
+        latest_df = df.sort_values('Date').groupby('Battery').tail(1)
+        latest_df.reset_index(drop=True, inplace=True)
+        latest_data = latest_df.to_html()
+
         return render_template(
                                 'status.html',
-                                data=parsed_data
+                                data=parsed_data,
+                                latest_data=latest_data
                               )
     else:
 
