@@ -32,6 +32,7 @@ def import_from_status(file_name):
 	# END building Status.csv
 
 	# building Batteries.csv
+	df = df.sort_values('Battery')
 	unique_batteries = df[file_columns[0][0]].unique()
 	print(unique_batteries)
 
