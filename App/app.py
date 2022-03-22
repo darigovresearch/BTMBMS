@@ -29,6 +29,7 @@ def home():
 def batteries():
 
     df = pd.read_csv("..//Data//Batteries.csv")
+    df = df.sort_values('Label')
     parsed_data = df.to_html()
 
     if request.method == 'GET':
@@ -47,6 +48,7 @@ def batteries():
         df.to_csv("..//Data//Batteries.csv", sep=",", index=False)
 
         # rendering new result
+        df = df.sort_values('Label')
         parsed_data = df.to_html()
         return render_template(
                                 'batteries.html',
