@@ -52,6 +52,20 @@ def import_from_status(file_name):
 	# END building Batteries.csv
 
 
+def get_latest_statuses(file_name):
+	"""get_latest_statuses is code to pull latest status of batteries"""
+
+	df = pd.read_csv(file_name)
+	print(df.columns)
+
+	latest_df = df.sort_values('Date').groupby('Battery').tail(1)
+	print(latest_df)
+
+	latest_df.to_csv("Data//Status_last.csv", sep=",", index=False)
+	
+	return latest_df
+
+
 if __name__ == '__main__':
 	initialise()
 
