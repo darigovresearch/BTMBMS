@@ -12,7 +12,8 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 @app.route('/', methods=['GET'])
 def home():
 
-    df = pd.read_csv("..//Data//Status_example.csv")
+    # df = pd.read_csv("..//Data//Status_example.csv")
+    df = pd.read_csv("..//Data//Status.csv")
     parsed_data = df.to_html()
 
     if request.method == 'GET':
@@ -41,9 +42,13 @@ def batteries():
         form_data = request.form
         print(form_data)
         battery_name = form_data["Battery-name"]
+        acquisition_year = form_data["Acquisition-year"]
+        acquisition_month = form_data["Acquisition-month"]
+        chemistry = form_data["Chemistry"]
+        cycle_schedule = form_data["Cycle-schedule"]
 
         # adding value
-        df.loc[len(df.index)] = [battery_name]
+        df.loc[len(df.index)] = [battery_name, acquisition_year, acquisition_month, chemistry, cycle_schedule]
         # saving to csv
         df.to_csv("..//Data//Batteries.csv", sep=",", index=False)
 

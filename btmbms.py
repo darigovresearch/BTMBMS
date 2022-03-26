@@ -5,7 +5,7 @@ file_names = ["Status", "Locations", "Batteries"]
 file_columns = [
 	["Battery", "SOC", "Date", "Time", "Notes"],
 	["Battery", "Location", "Start", "End"],
-	["Label"]
+	["Label", "Acquisition year", "Acquisition month", "Chemistry", "Cycle schedule"]
 ]
 
 
