@@ -17,5 +17,8 @@ A Better Than Manual Battery Management System
 ```
 - Go to http://localhost:8766/
 
+## Documentation
+https://darigovresearch.github.io/BTMBMS/
+
 ## License
 To be decided, see [this issue](https://github.com/darigovresearch/BTMBMS/issues/2)
