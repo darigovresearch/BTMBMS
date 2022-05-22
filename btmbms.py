@@ -13,7 +13,7 @@ def initialise():
 	"""initialise is code to generate the relevant files"""
 
 	for i in range(0, len(file_names)):
-		x = open("Data//"+ file_names[i] + ".csv", "w")
+		x = open("Data//" + file_names[i] + ".csv", "w")
 		temp_columns = file_columns[i]
 		x.write(",".join(temp_columns))
 		x.close()
@@ -36,7 +36,7 @@ def import_from_status(file_name):
 	unique_batteries = df[file_columns[0][0]].unique()
 	print(unique_batteries)
 
-	x = open("Data//"+ file_names[2] + ".csv", "w")
+	x = open("Data//" + file_names[2] + ".csv", "w")
 	temp_columns = file_columns[2]
 	x.write(",".join(temp_columns))
 
@@ -46,7 +46,6 @@ def import_from_status(file_name):
 			x.write("\n" + unique_batteries[j] + "\n")
 		else:
 			x.write(unique_batteries[j] + "\n")
-
 
 	x.close()
 	# END building Batteries.csv
@@ -62,7 +61,7 @@ def get_latest_statuses(file_name):
 	print(latest_df)
 
 	latest_df.to_csv("Data//Status_last.csv", sep=",", index=False)
-	
+
 	return latest_df
 
 
