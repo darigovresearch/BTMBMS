@@ -34,5 +34,14 @@
     	<button type="submit">Add</button>
     </form>
 
-
+    <script>
+        window.onload = function() {
+            // Adds date in right format to Date input
+            var today = new Date;
+            var year = today.getFullYear();;
+            var month = today.getMonth() + 1;
+            document.getElementById('Acquisition-year').value = year
+            document.getElementById('Acquisition-month').value = month
+        }
+    </script>
 {% endblock %}
