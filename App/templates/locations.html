@@ -28,4 +28,15 @@
     	<button>Add</button>
     </form>
 
+    <script>
+        window.onload = function() {
+            // Adds date in right format to Start input
+            var today = new Date;
+            var year = today.getFullYear();;
+            var month = today.getMonth() + 1;
+            var day = today.getDate();
+            date_formatted = [year, month, day].join("-")
+            document.getElementById('Start').value = date_formatted
+        }
+    </script>
 {% endblock %}
