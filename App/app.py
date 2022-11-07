@@ -1,6 +1,6 @@
 # app.py is code that runs a flask web app for the user interface
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import pandas as pd
 
 
@@ -146,10 +146,31 @@ def status():
         return render_template('status.html')
 
 
-@app.route('/settings', methods=['GET'])
+@app.route('/settings', methods=['POST', 'GET'])
 def settings():
 
-    return render_template('settings.html')
+    if request.method == 'GET':
+        return render_template('settings.html')
+    elif request.method == 'POST':
+        print("form submitted")
+        submit_type = request.args.get("submit")
+        print(submit_type)
+
+        if submit_type == "export":
+            print("Export requested")
+
+            # getting data
+            status = pd.read_csv("..//Data//Status.csv")
+            locations = pd.read_csv("..//Data//Locations.csv")
+            batteries = pd.read_csv("..//Data//Batteries.csv")
+
+            # generating export in ods format
+            with pd.ExcelWriter("..//Data//Export.ods") as export:
+                status.to_excel(export, sheet_name="Status", index=False)
+                locations.to_excel(export, sheet_name="Locations", index=False)
+                batteries.to_excel(export, sheet_name="Batteries", index=False)
+
+        return send_file(export, as_attachment=True)
 
 
 if __name__ == '__main__':
