@@ -18,6 +18,8 @@ A Better Than Manual Battery Management System
 - Go to http://localhost:8766/
 
 ## Documentation
+Documentation can be found at the following link and there is a local copy in your `docs` folder.
+
 https://darigovresearch.github.io/BTMBMS/
 
 ### Editing the documentation
