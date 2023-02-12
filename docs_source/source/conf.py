@@ -13,12 +13,13 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+import datetime
 
 # -- Project information -----------------------------------------------------
 
+today = datetime.datetime.today()
 project = 'BTBMS'
-copyright = '2022, Darigov Research'
+copyright = '2022-%s, Darigov Research'%(today.year)
 author = 'Darigov Research'
 
 # The full version, including alpha/beta/rc tags
