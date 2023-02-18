@@ -5,16 +5,13 @@
 
 Welcome to BTBMS's documentation!
 =================================
+A Better Than Manual Battery Management System
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   installation
+   run_the_app
+   documentation
+   license
