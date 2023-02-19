@@ -156,6 +156,22 @@ def settings():
         submit_type = request.args.get("submit")
         print(submit_type)
 
+        if submit_type == "import":
+            print("Import requested")
+            form_data = request.form
+            print(form_data)
+            file = request.files['import-file']        
+            status = pd.read_excel(file, sheet_name="Status")
+            print(status)
+            status.to_csv("..//Data//Status.csv", index=False)
+            locations = pd.read_excel(file, sheet_name="Locations")
+            print(locations)
+            locations.to_csv("..//Data//Locations.csv", index=False)
+            batteries = pd.read_excel(file, sheet_name="Batteries")
+            print(batteries)
+            batteries.to_csv("..//Data//Batteries.csv", index=False)
+            return render_template('settings.html')
+
         if submit_type == "export":
             print("Export requested")
 

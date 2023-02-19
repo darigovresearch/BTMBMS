@@ -6,7 +6,13 @@
 
     <h2>Import data</h2>
 
-    <p>Feature coming soon</p>
+
+    <form action="/settings?submit=import" method="POST" enctype="multipart/form-data">
+	    <label for="import-file">Select a file:</label>
+		<input type="file" id="import-file" name="import-file">
+		<br>
+    	<button id="import">Import</button>
+    </form>
     
     <h2>Export data</h2>
 
