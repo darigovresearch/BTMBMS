@@ -1,5 +1,5 @@
 import pandas as pd
-
+import os
 
 file_names = ["Status", "Locations", "Batteries"]
 file_columns = [
@@ -11,6 +11,11 @@ file_columns = [
 
 def initialise():
 	"""initialise is code to generate the relevant files"""
+
+	try:
+		os.makedirs("..//Data")
+	except Exception as e:
+		print("Folder already made")
 
 	for i in range(0, len(file_names)):
 		x = open("..//Data//" + file_names[i] + ".csv", "w")

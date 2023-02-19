@@ -2,11 +2,18 @@
 
 from flask import Flask, render_template, request, send_file
 import pandas as pd
-
+import btmbms
 
 app = Flask(__name__)
 # line to prevent cache from not updating static files
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
+# running file checks onload
+try:
+    df = pd.read_csv("..//Data//Status.csv")
+except Exception as e:
+    print("No files found, initiallising folders & files")
+    btmbms.initialise()
 
 
 @app.route('/', methods=['GET'])
