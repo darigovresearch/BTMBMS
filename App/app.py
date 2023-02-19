@@ -170,7 +170,20 @@ def settings():
                 locations.to_excel(export, sheet_name="Locations", index=False)
                 batteries.to_excel(export, sheet_name="Batteries", index=False)
 
-        return send_file(export, as_attachment=True)
+            return send_file(export, as_attachment=True)
+
+        elif submit_type == "delete":
+            print("Deleting data")
+            status = pd.read_csv("..//Data//Status.csv")
+            status = status.head(0)
+            status.to_csv("..//Data//Status.csv", index=False)
+            locations = pd.read_csv("..//Data//Locations.csv")
+            locations = locations.head(0)
+            locations.to_csv("..//Data//Locations.csv", index=False)
+            batteries = pd.read_csv("..//Data//Batteries.csv")
+            batteries = batteries.head(0)
+            batteries.to_csv("..//Data//Batteries.csv", index=False)
+            return render_template('settings.html')
 
 
 if __name__ == '__main__':
