@@ -30,10 +30,10 @@
     	<input type="text" name="SOC" id="SOC" required>
     	<br>
     	<label>Date</label>
-    	<input type="text" name="Date" id="Date" required>
+    	<input type="date" name="Date" id="Date" required>
     	<br>
     	<label>Time</label>
-    	<input type="text" name="Time" id="Time" required>
+    	<input type="time" name="Time" id="Time" required>
     	<br>
     	<label>Notes</label>
     	<input type="text" name="Notes" id="Notes">
@@ -47,6 +47,9 @@
             var today = new Date;
             var year = today.getFullYear();;
             var month = today.getMonth() + 1;
+            if (month < 10) {
+                month = "0" + month
+            }
             var day = today.getDate();
             date_formatted = [year, month, day].join("-")
             document.getElementById('Date').value = date_formatted
