@@ -12,18 +12,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 @app.route('/', methods=['GET'])
 def home():
 
-    # df = pd.read_csv("..//Data//Status_example.csv")
-    df = pd.read_csv("..//Data//Status.csv")
-    parsed_data = df.to_html()
-
-    if request.method == 'GET':
-        return render_template(
-                                'index.html',
-                                data=parsed_data
-                              )
-    else:
-
-        return render_template('index.html')
+    return render_template('index.html')
 
 
 @app.route('/batteries', methods=['POST', 'GET'])
