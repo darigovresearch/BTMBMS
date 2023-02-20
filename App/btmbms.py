@@ -4,8 +4,8 @@ import os
 file_names = ["Status", "Locations", "Batteries"]
 file_columns = [
 	["Battery", "SOC", "Date", "Time", "Notes"],
-	["Battery", "Location", "Start", "End"],
-	["Label", "Acquisition year", "Acquisition month", "Chemistry", "Cycle schedule"]
+	["Battery", "Location", "Start", "End", "Notes"],
+	["Label", "Acquisition year", "Acquisition month", "Chemistry", "Cycle schedule", "Notes"]
 ]
 
 
