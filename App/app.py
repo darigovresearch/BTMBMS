@@ -2,6 +2,8 @@
 
 from flask import Flask, render_template, request, send_file
 import pandas as pd
+import datetime
+
 import btmbms
 
 app = Flask(__name__)
@@ -179,7 +181,10 @@ def settings():
             batteries = pd.read_csv("..//Data//Batteries.csv")
 
             # generating export in ods format
-            with pd.ExcelWriter("..//Data//Export.ods") as export:
+            today = datetime.datetime.now()
+            today_string = "-".join([str(today.year), str(today.month), str(today.day)])
+            filename = "..//Data//Export " + today_string + ".ods"
+            with pd.ExcelWriter(filename) as export:
                 status.to_excel(export, sheet_name="Status", index=False)
                 locations.to_excel(export, sheet_name="Locations", index=False)
                 batteries.to_excel(export, sheet_name="Batteries", index=False)
