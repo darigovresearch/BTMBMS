@@ -42,9 +42,10 @@ def batteries():
         acquisition_month = form_data["Acquisition-month"]
         chemistry = form_data["Chemistry"]
         cycle_schedule = form_data["Cycle-schedule"]
+        notes_name = form_data["Notes"]
 
         # adding value
-        df.loc[len(df.index)] = [battery_name, acquisition_year, acquisition_month, chemistry, cycle_schedule]
+        df.loc[len(df.index)] = [battery_name, acquisition_year, acquisition_month, chemistry, cycle_schedule, notes_name]
         # saving to csv
         df.to_csv("..//Data//Batteries.csv", sep=",", index=False)
 
@@ -78,9 +79,10 @@ def locations():
         location_name = form_data["Location"]
         start_name = form_data["Start"]
         end_name = form_data["End"]
+        notes_name = form_data["Notes"]
 
         # adding value
-        df.loc[len(df.index)] = [battery_name, location_name, start_name, end_name]
+        df.loc[len(df.index)] = [battery_name, location_name, start_name, end_name, notes_name]
         # saving to csv
         df.to_csv("..//Data//Locations.csv", sep=",", index=False)
 
