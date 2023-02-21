@@ -198,7 +198,7 @@ def settings():
             batteries.to_csv("..//Data//Batteries.csv", index=False)
             return render_template('settings.html')
 
-        if submit_type == "export":
+        elif submit_type == "export":
             print("Export requested")
 
             # getting data
