@@ -75,25 +75,51 @@ def locations():
                                 data=parsed_data
                               )
     elif request.method == 'POST':
-        form_data = request.form
-        print(form_data)
-        battery_name = form_data["Battery-name"]
-        location_name = form_data["Location"]
-        start_name = form_data["Start"]
-        end_name = form_data["End"]
-        notes_name = form_data["Notes"]
+        submit_type = request.args.get("submit")
+        print(submit_type)
 
-        # adding value
-        df.loc[len(df.index)] = [battery_name, location_name, start_name, end_name, notes_name]
-        # saving to csv
-        df.to_csv("..//Data//Locations.csv", sep=",", index=False)
+        if submit_type == "add":
+            form_data = request.form
+            print(form_data)
+            battery_name = form_data["Battery-name"]
+            location_name = form_data["Location"]
+            start_name = form_data["Start"]
+            end_name = form_data["End"]
+            notes_name = form_data["Notes"]
 
-        # rendering new result
-        parsed_data = df.to_html()
-        return render_template(
-                                'locations.html',
-                                data=parsed_data
-                              )
+            # adding value
+            df.loc[len(df.index)] = [battery_name, location_name, start_name, end_name, notes_name]
+            # saving to csv
+            df.to_csv("..//Data//Locations.csv", sep=",", index=False)
+
+            # rendering new result
+            parsed_data = df.to_html()
+            return render_template(
+                                    'locations.html',
+                                    data=parsed_data
+                                  )
+
+        elif submit_type == "edit":
+            form_data = request.form
+            print(form_data)
+            row = int(form_data["Row-number"])
+            battery_name = form_data["Battery-name"]
+            location_name = form_data["Location"]
+            start_name = form_data["Start"]
+            end_name = form_data["End"]
+            notes_name = form_data["Notes"]
+
+            # adding value
+            df.loc[row] = [battery_name, location_name, start_name, end_name, notes_name]
+            # saving to csv
+            df.to_csv("..//Data//Locations.csv", sep=",", index=False)
+
+            # rendering new result
+            parsed_data = df.to_html()
+            return render_template(
+                                    'locations.html',
+                                    data=parsed_data
+                                  )
     else:
 
         return render_template('locations.html')

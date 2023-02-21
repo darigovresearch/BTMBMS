@@ -12,7 +12,7 @@
 
     <h2>Add location</h2>
 
-    <form action="/locations" method="POST">
+    <form action="/locations?submit=add" method="POST">
     	<label>Battery name</label>
     	<input type="text" name="Battery-name" id="Battery-name" required>
     	<br>
@@ -29,6 +29,30 @@
         <input type="text" name="Notes" id="Notes">
         <br>
     	<button>Add</button>
+    </form>
+
+    <h2>Edit location</h2>
+
+    <form action="/locations?submit=edit" method="POST">
+        <label>Row</label>
+        <input type="number" min=0 name="Row-number" id="Row-number" required>
+        <br>
+        <label>Battery name</label>
+        <input type="text" name="Battery-name" id="Battery-name" required>
+        <br>
+        <label>Location</label>
+        <input type="text" name="Location" id="Location" required>
+        <br>
+        <label>Start</label>
+        <input type="date" name="Start" id="Start" required>
+        <br>
+        <label>End</label>
+        <input type="date" name="End" id="End" required>
+        <br>
+        <label>Notes</label>
+        <input type="text" name="Notes" id="Notes">
+        <br>
+        <button>Edit</button>
     </form>
 
     <script>
