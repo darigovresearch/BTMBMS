@@ -55,6 +55,14 @@
         <button>Edit</button>
     </form>
 
+    <h2>Delete location</h2>
+
+    <form action="/locations?submit=delete" method="POST">
+        <label>Row</label>
+        <input type="number" min=0 name="Row-number" id="Row-number" required>
+        <button>Delete</button>
+    </form>
+
     <script>
         window.onload = function() {
             // Adds date in right format to Start input

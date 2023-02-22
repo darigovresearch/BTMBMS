@@ -120,6 +120,24 @@ def locations():
                                     'locations.html',
                                     data=parsed_data
                                   )
+
+        elif submit_type == "delete":
+            form_data = request.form
+            print(form_data)
+            row = int(form_data["Row-number"])
+
+            # deleting row
+            df = df.drop([row])
+            df = df.reset_index(drop=True)
+            # saving to csv
+            df.to_csv("..//Data//Locations.csv", sep=",", index=False)
+
+            # rendering new result
+            parsed_data = df.to_html()
+            return render_template(
+                                    'locations.html',
+                                    data=parsed_data
+                                  )
     else:
 
         return render_template('locations.html')
