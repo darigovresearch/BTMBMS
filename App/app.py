@@ -28,7 +28,7 @@ def home():
 def batteries():
 
     df = pd.read_csv("..//Data//Batteries.csv")
-    df = df.sort_values('Label')
+    # df = df.sort_values('Label')
     parsed_data = df.to_html()
 
     if request.method == 'GET':
@@ -37,27 +37,55 @@ def batteries():
                                 data=parsed_data
                               )
     elif request.method == 'POST':
-        form_data = request.form
-        print(form_data)
-        battery_name = form_data["Battery-name"]
-        acquisition_year = form_data["Acquisition-year"]
-        acquisition_month = form_data["Acquisition-month"]
-        chemistry = form_data["Chemistry"]
-        cycle_schedule = form_data["Cycle-schedule"]
-        notes_name = form_data["Notes"]
+        submit_type = request.args.get("submit")
+        print(submit_type)
 
-        # adding value
-        df.loc[len(df.index)] = [battery_name, acquisition_year, acquisition_month, chemistry, cycle_schedule, notes_name]
-        # saving to csv
-        df.to_csv("..//Data//Batteries.csv", sep=",", index=False)
+        if submit_type == "add":
+            form_data = request.form
+            print(form_data)
+            battery_name = form_data["Battery-name"]
+            acquisition_year = form_data["Acquisition-year"]
+            acquisition_month = form_data["Acquisition-month"]
+            chemistry = form_data["Chemistry"]
+            cycle_schedule = form_data["Cycle-schedule"]
+            notes_name = form_data["Notes"]
 
-        # rendering new result
-        df = df.sort_values('Label')
-        parsed_data = df.to_html()
-        return render_template(
-                                'batteries.html',
-                                data=parsed_data
-                              )
+            # adding value
+            df.loc[len(df.index)] = [battery_name, acquisition_year, acquisition_month, chemistry, cycle_schedule, notes_name]
+            # saving to csv
+            df.to_csv("..//Data//Batteries.csv", sep=",", index=False)
+
+            # rendering new result
+            # df = df.sort_values('Label')
+            parsed_data = df.to_html()
+            return render_template(
+                                    'batteries.html',
+                                    data=parsed_data
+                                  )
+
+        elif submit_type == "edit":
+            form_data = request.form
+            print(form_data)
+            row = int(form_data["Row-number"])
+            battery_name = form_data["Battery-name"]
+            acquisition_year = form_data["Acquisition-year"]
+            acquisition_month = form_data["Acquisition-month"]
+            chemistry = form_data["Chemistry"]
+            cycle_schedule = form_data["Cycle-schedule"]
+            notes_name = form_data["Notes"]
+
+            # adding value
+            df.loc[row] = [battery_name, acquisition_year, acquisition_month, chemistry, cycle_schedule, notes_name]
+            # saving to csv
+            df.to_csv("..//Data//Batteries.csv", sep=",", index=False)
+
+            # rendering new result
+            # df = df.sort_values('Label')
+            parsed_data = df.to_html()
+            return render_template(
+                                    'batteries.html',
+                                    data=parsed_data
+                                  )
     else:
 
         return render_template('batteries.html')

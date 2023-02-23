@@ -12,7 +12,7 @@
 
     <h2>Add battery</h2>
 
-    <form action="/batteries" method="POST">
+    <form action="/batteries?submit=add" method="POST">
         <div class="form-group">
 
 	    	<label>Battery name</label>
@@ -35,6 +35,36 @@
 
 		</div>
     	<button type="submit">Add</button>
+    </form>
+
+    <h2>Edit battery</h2>
+
+    <form action="/batteries?submit=edit" method="POST">
+        <div class="form-group">
+            
+            <label>Row</label>
+            <input type="number" min=0 name="Row-number" id="Row-number" required>
+            <br>
+            <label>Battery name</label>
+            <input type="text" name="Battery-name" id="Battery-name" required>
+            <br>
+            <label>Acquisition year</label>
+            <input type="text" name="Acquisition-year" id="Acquisition-year" required>
+            <br>
+            <label>Acquisition month</label>
+            <input type="text" name="Acquisition-month" id="Acquisition-month" required>
+            <br>
+            <label>Chemistry</label>
+            <input type="text" name="Chemistry" id="Chemistry">
+            <br>
+            <label>Cycle schedule</label>
+            <input type="text" name="Cycle-schedule" id="Cycle-schedule">
+            <br>
+            <label>Notes</label>
+            <input type="text" name="Notes" id="Notes">
+
+        </div>
+        <button type="submit">Edit</button>
     </form>
 
     <script>
