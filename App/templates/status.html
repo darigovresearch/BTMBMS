@@ -22,7 +22,7 @@
 
     <h2>Add status</h2>
 
-    <form action="/status" method="POST">
+    <form action="/status?submit=add" method="POST">
     	<label>Battery name</label>
     	<input type="text" name="Battery-name" id="Battery-name" required>
     	<br>
@@ -41,6 +41,30 @@
     	<button>Add</button>
     </form>
 
+    <h2>Edit status</h2>
+    <p>Select a row number from the "All historic statuses" table</p>
+
+    <form action="/status?submit=edit" method="POST">
+        <label>Row</label>
+        <input type="number" min=0 name="Row-number" id="Row-number" required>
+        <br>
+        <label>Battery name</label>
+        <input type="text" name="Battery-name" id="Battery-name" required>
+        <br>
+        <label>SOC</label>
+        <input type="text" name="SOC" id="SOC" required>
+        <br>
+        <label>Date</label>
+        <input type="date" name="Date" id="Date" required>
+        <br>
+        <label>Time</label>
+        <input type="time" name="Time" id="Time" step="1" required>
+        <br>
+        <label>Notes</label>
+        <input type="text" name="Notes" id="Notes">
+        <br>
+        <button>Add</button>
+    </form>
     <script>
         window.onload = function() {
             // Adds date in right format to Date input

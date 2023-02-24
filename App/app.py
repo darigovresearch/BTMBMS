@@ -189,30 +189,63 @@ def status():
                                 latest_data=latest_data
                               )
     elif request.method == 'POST':
-        form_data = request.form
-        print(form_data)
-        battery_name = form_data["Battery-name"]
-        soc_name = form_data["SOC"]
-        date_name = form_data["Date"]
-        time_name = form_data["Time"]
-        notes_name = form_data["Notes"]
+        submit_type = request.args.get("submit")
+        print(submit_type)
 
-        # adding value
-        df.loc[len(df.index)] = [battery_name, soc_name, date_name, time_name, notes_name]
-        # saving to csv
-        df.to_csv("..//Data//Status.csv", sep=",", index=False)
+        if submit_type == "add":
+            form_data = request.form
+            print(form_data)
+            battery_name = form_data["Battery-name"]
+            soc_name = form_data["SOC"]
+            date_name = form_data["Date"]
+            time_name = form_data["Time"]
+            notes_name = form_data["Notes"]
 
-        # rendering new result
-        parsed_data = df.to_html()
-        latest_df = df.sort_values('Date').groupby('Battery').tail(1)
-        latest_df.reset_index(drop=True, inplace=True)
-        latest_data = latest_df.to_html()
+            # adding value
+            df.loc[len(df.index)] = [battery_name, soc_name, date_name, time_name, notes_name]
+            # saving to csv
+            df.to_csv("..//Data//Status.csv", sep=",", index=False)
 
-        return render_template(
-                                'status.html',
-                                data=parsed_data,
-                                latest_data=latest_data
-                              )
+            # rendering new result
+            parsed_data = df.to_html()
+            latest_df = df.sort_values('Date').groupby('Battery').tail(1)
+            latest_df.reset_index(drop=True, inplace=True)
+            latest_data = latest_df.to_html()
+
+            return render_template(
+                                    'status.html',
+                                    data=parsed_data,
+                                    latest_data=latest_data
+                                  )
+
+        elif submit_type == "edit":
+            form_data = request.form
+            print(form_data)
+            row = int(form_data["Row-number"])
+            battery_name = form_data["Battery-name"]
+            soc_name = form_data["SOC"]
+            date_name = form_data["Date"]
+            time_name = form_data["Time"]
+            notes_name = form_data["Notes"]
+
+            # adding value
+            df.loc[row] = [battery_name, soc_name, date_name, time_name, notes_name]
+            # saving to csv
+            df.to_csv("..//Data//Status.csv", sep=",", index=False)
+
+            # rendering new result
+            parsed_data = df.to_html()
+            latest_df = df.sort_values('Date').groupby('Battery').tail(1)
+            latest_df.reset_index(drop=True, inplace=True)
+            latest_data = latest_df.to_html()
+
+            return render_template(
+                                    'status.html',
+                                    data=parsed_data,
+                                    latest_data=latest_data
+                                  )
+
+
     else:
 
         return render_template('status.html')
