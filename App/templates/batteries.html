@@ -67,6 +67,14 @@
         <button type="submit">Edit</button>
     </form>
 
+    <h2>Delete battery</h2>
+
+    <form action="/batteries?submit=delete" method="POST">
+        <label>Row</label>
+        <input type="number" min=0 name="Row-number" id="Row-number" required>
+        <button>Delete</button>
+    </form>
+
     <script>
         window.onload = function() {
             // Adds date in right format to Acquisition year & month input
