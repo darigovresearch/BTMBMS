@@ -65,6 +65,16 @@
         <br>
         <button>Add</button>
     </form>
+
+    <h2>Delete status</h2>
+    <p>Select a row number from the "All historic statuses" table</p>
+
+    <form action="/status?submit=delete" method="POST">
+        <label>Row</label>
+        <input type="number" min=0 name="Row-number" id="Row-number" required>
+        <button>Delete</button>
+    </form>
+
     <script>
         window.onload = function() {
             // Adds date in right format to Date input

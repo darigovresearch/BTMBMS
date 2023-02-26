@@ -263,6 +263,28 @@ def status():
                                     latest_data=latest_data
                                   )
 
+        elif submit_type == "delete":
+            form_data = request.form
+            print(form_data)
+            row = int(form_data["Row-number"])
+
+            # deleting row
+            df = df.drop([row])
+            df = df.reset_index(drop=True)
+            # saving to csv
+            df.to_csv("..//Data//Status.csv", sep=",", index=False)
+
+            # rendering new result
+            parsed_data = df.to_html()
+            latest_df = df.sort_values('Date').groupby('Battery').tail(1)
+            latest_df.reset_index(drop=True, inplace=True)
+            latest_data = latest_df.to_html()
+
+            return render_template(
+                                    'status.html',
+                                    data=parsed_data,
+                                    latest_data=latest_data
+                                  )
 
     else:
 
