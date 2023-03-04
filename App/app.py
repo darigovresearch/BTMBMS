@@ -21,7 +21,15 @@ except Exception as e:
 @app.route('/', methods=['GET'])
 def home():
 
-    return render_template('index.html')
+    df = pd.read_csv("..//Data//Status.csv")
+    parsed_data = df.to_html()
+
+    # calculating latest data
+    latest_df = df.sort_values('Date').groupby('Battery').tail(1)
+    latest_df.reset_index(drop=True, inplace=True)
+    latest_data = latest_df.to_html()
+
+    return render_template('index.html', latest_data=latest_data)
 
 
 @app.route('/batteries', methods=['POST', 'GET'])

@@ -4,4 +4,12 @@
     <h1>BTBMS</h1>
     <h2>A better than manual battery management system</h2>
 
+    <h2>Latest status</h2>
+
+    {% if latest_data != "No data yet available" %}
+    {{ latest_data|safe }}
+    {% else %}
+    <p>No data yet available</p>
+    {% endif %}
+
 {% endblock %}
