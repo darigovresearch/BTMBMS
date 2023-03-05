@@ -3,6 +3,15 @@
 
     <h1>Locations</h1>
 
+    <h2>Latest locations</h2>
+
+    {% if latest_data != "No data yet available" %}
+    {{ latest_data|safe }}
+    {% else %}
+    <p>No data yet available</p>
+    {% endif %}
+
+    <h2>All historic locations</h2>
 
     {% if data != "No data yet available" %}
     {{ data|safe }}
@@ -23,7 +32,7 @@
     	<input type="date" name="Start" id="Start" required>
     	<br>
     	<label>End</label>
-    	<input type="date" name="End" id="End" required>
+    	<input type="date" name="End" id="End">
     	<br>
         <label>Notes</label>
         <input type="text" name="Notes" id="Notes">
