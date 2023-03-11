@@ -29,7 +29,13 @@ def home():
     latest_df.reset_index(drop=True, inplace=True)
     latest_data = latest_df.to_html()
 
-    return render_template('index.html', latest_data=latest_data)
+    df_locations = pd.read_csv("..//Data//Locations.csv")
+    # calculating latest data
+    latest_df_locations = df_locations.sort_values('Start').groupby('Battery').tail(1)
+    latest_df_locations.reset_index(drop=True, inplace=True)
+    latest_locations_data = latest_df_locations.to_html()
+
+    return render_template('index.html', latest_data=latest_data, latest_locations_data=latest_locations_data)
 
 
 @app.route('/batteries', methods=['POST', 'GET'])

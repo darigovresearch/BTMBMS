@@ -12,4 +12,12 @@
     <p>No data yet available</p>
     {% endif %}
 
+    <h2>Latest locations</h2>
+
+    {% if latest_locations_data != "No data yet available" %}
+    {{ latest_locations_data|safe }}
+    {% else %}
+    <p>No data yet available</p>
+    {% endif %}
+
 {% endblock %}
