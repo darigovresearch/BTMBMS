@@ -11,6 +11,7 @@
     {% else %}
     <p>No data yet available</p>
     {% endif %}
+    <p><a href="{{ url_for('status') }}">More details</a></p>
 
     <h2>Latest locations</h2>
 
@@ -19,5 +20,6 @@
     {% else %}
     <p>No data yet available</p>
     {% endif %}
+    <p><a href="{{ url_for('locations') }}">More details</a></p>
 
 {% endblock %}
