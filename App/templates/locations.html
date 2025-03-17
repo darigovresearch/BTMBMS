@@ -23,7 +23,17 @@
 
     <form action="/locations?submit=add" method="POST">
     	<label>Battery name</label>
-    	<input type="text" name="Battery-name" id="Battery-name" required>
+    	<!-- <input type="text" name="Battery-name" id="Battery-name" required> -->
+        <!-- <label for="Battery-name">Select battery:</label> -->
+
+        <select name="Battery-name" id="Battery-name">
+          {% if dropdown_values != "No data yet available" %}
+          {{ dropdown_values|safe }}
+          {% else %}
+          <option value="">Select battery</option>
+          <option value="tbc">TBC</option>
+          {% endif %}
+        </select>
     	<br>
     	<label>Location</label>
     	<input type="text" name="Location" id="Location" required>
@@ -47,7 +57,15 @@
         <input type="number" min=0 name="Row-number" id="Row-number" required>
         <br>
         <label>Battery name</label>
-        <input type="text" name="Battery-name" id="Battery-name" required>
+        <!-- <input type="text" name="Battery-name" id="Battery-name" required> -->
+        <select name="Battery-name" id="Battery-name">
+          {% if dropdown_values != "No data yet available" %}
+          {{ dropdown_values|safe }}
+          {% else %}
+          <option value="">Select battery</option>
+          <option value="tbc">TBC</option>
+          {% endif %}
+        </select>
         <br>
         <label>Location</label>
         <input type="text" name="Location" id="Location" required>

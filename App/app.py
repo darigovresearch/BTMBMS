@@ -127,6 +127,12 @@ def batteries():
 def locations():
 
     df = pd.read_csv("..//Data//Locations.csv")
+    df_batteries = pd.read_csv("..//Data//Batteries.csv")
+    all_batteries = sorted(list(df_batteries["Label"]))
+    dropdown_values = '         <option value="">Select battery</option>\n'
+    for i in range(0, len(all_batteries)):
+        dropdown_values = dropdown_values + '         <option value="' + all_batteries[i] + '">' + all_batteries[i] + '</option>\n'
+    print(dropdown_values)
     parsed_data = df.to_html()
 
     # calculating latest data
@@ -138,7 +144,8 @@ def locations():
         return render_template(
                                 'locations.html',
                                 data=parsed_data,
-                                latest_data=latest_data
+                                latest_data=latest_data,
+                                dropdown_values=dropdown_values
                               )
     elif request.method == 'POST':
         submit_type = request.args.get("submit")
@@ -163,7 +170,8 @@ def locations():
             return render_template(
                                     'locations.html',
                                     data=parsed_data,
-                                    latest_data=latest_data
+                                    latest_data=latest_data,
+                                    dropdown_values=dropdown_values
                                   )
 
         elif submit_type == "edit":
@@ -186,7 +194,8 @@ def locations():
             return render_template(
                                     'locations.html',
                                     data=parsed_data,
-                                    latest_data=latest_data
+                                    latest_data=latest_data,
+                                    dropdown_values=dropdown_values
                                   )
 
         elif submit_type == "delete":
@@ -205,7 +214,8 @@ def locations():
             return render_template(
                                     'locations.html',
                                     data=parsed_data,
-                                    latest_data=latest_data
+                                    latest_data=latest_data,
+                                    dropdown_values=dropdown_values
                                   )
     else:
 
