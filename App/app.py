@@ -132,7 +132,7 @@ def locations():
     dropdown_values = '         <option value="">Select battery</option>\n'
     for i in range(0, len(all_batteries)):
         dropdown_values = dropdown_values + '         <option value="' + all_batteries[i] + '">' + all_batteries[i] + '</option>\n'
-    print(dropdown_values)
+    # print(dropdown_values)
     parsed_data = df.to_html()
 
     # calculating latest data
@@ -226,6 +226,12 @@ def locations():
 def status():
 
     df = pd.read_csv("..//Data//Status.csv")
+    df_batteries = pd.read_csv("..//Data//Batteries.csv")
+    all_batteries = sorted(list(df_batteries["Label"]))
+    dropdown_values = '         <option value="">Select battery</option>\n'
+    for i in range(0, len(all_batteries)):
+        dropdown_values = dropdown_values + '         <option value="' + all_batteries[i] + '">' + all_batteries[i] + '</option>\n'
+    # print(dropdown_values)
     parsed_data = df.to_html()
 
     # calculating latest data
@@ -237,7 +243,8 @@ def status():
         return render_template(
                                 'status.html',
                                 data=parsed_data,
-                                latest_data=latest_data
+                                latest_data=latest_data,
+                                dropdown_values=dropdown_values
                               )
     elif request.method == 'POST':
         submit_type = request.args.get("submit")
@@ -266,7 +273,8 @@ def status():
             return render_template(
                                     'status.html',
                                     data=parsed_data,
-                                    latest_data=latest_data
+                                    latest_data=latest_data,
+                                    dropdown_values=dropdown_values
                                   )
 
         elif submit_type == "edit":
@@ -293,7 +301,8 @@ def status():
             return render_template(
                                     'status.html',
                                     data=parsed_data,
-                                    latest_data=latest_data
+                                    latest_data=latest_data,
+                                    dropdown_values=dropdown_values
                                   )
 
         elif submit_type == "delete":
@@ -316,7 +325,8 @@ def status():
             return render_template(
                                     'status.html',
                                     data=parsed_data,
-                                    latest_data=latest_data
+                                    latest_data=latest_data,
+                                    dropdown_values=dropdown_values
                                   )
 
     else:
