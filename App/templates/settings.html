@@ -25,8 +25,31 @@
     <p>There is no going back</p>
 
     <form action="/settings?submit=delete" method="POST">
-    	<button id="delete">Delete</button>
+        <input type="checkbox" id="confirm-deletion" name="confirm-deletion"/>
+        <label for="confirm-deletion">I confirm that there is no going back after clicking delete</label>
+        <br>
+    	<button disabled id="delete">Delete</button>
     </form>
     
+
+    <script type="text/javascript">
+
+        function check_deletion() {
+            // check_deletion is code to check if the confirm-deletion button is enabled
+            status_value = document.getElementById("confirm-deletion").checked
+            // console.log(status_value)
+            if (status_value == true) {
+                document.getElementById("delete").disabled = false
+                // console.log("confirm-deletion is checked")
+            } else {
+
+                // console.log("confirm-deletion is NOT checked")
+                document.getElementById("delete").disabled = true
+            }
+        }
+        // window.onload(){
+            interval = setInterval(check_deletion, 1000);
+        // }
+    </script>
 
 {% endblock %}
