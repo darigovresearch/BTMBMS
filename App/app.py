@@ -350,7 +350,7 @@ def settings():
 
             # generating export in ods format
             today = datetime.datetime.now()
-            today_string = "-".join([str(today.year), str(today.month), str(today.day)])
+            today_string = "-".join([str(today.year), str(today.month), str(today.day), str(today.hour), str(today.minute), str(today.second)])
             filename = "..//Data//Export " + today_string + ".ods"
             with pd.ExcelWriter(filename) as export:
                 status.to_excel(export, sheet_name="Status", index=False)
