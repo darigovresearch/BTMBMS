@@ -105,6 +105,10 @@
             var month = today.getMonth() + 1;
             document.getElementById('Acquisition-year').value = year
             document.getElementById('Acquisition-month').value = month
+
+            // code to set max rows
+            row_count = document.getElementsByClassName("dataframe")[0]["tBodies"][0].childElementCount -1
+            document.getElementById("Row-number").max = row_count
         }
     </script>
 {% endblock %}
