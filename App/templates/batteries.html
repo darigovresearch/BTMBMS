@@ -54,36 +54,38 @@
         <div class="form-group">
             
             <label>Row</label>
-            <input type="number" min=0 name="Row-number" id="Row-number" required>
+            <input type="number" min=0 name="Row-number" id="Edit-Row-number" required onchange="update_edit_battery(document.getElementById('Edit-Row-number').value)">
             <br>
             <label>Battery name</label>
-            <input type="text" name="Battery-name" id="Battery-name" required>
+            <input type="text" name="Battery-name" id="Edit-Battery-name" required>
             <br>
             <label>Acquisition year</label>
-            <input type="number" name="Acquisition-year" id="Acquisition-year" required>
+            <input type="number" name="Acquisition-year" id="Edit-Acquisition-year" required>
             <br>
             <label>Acquisition month</label>
-            <input type="number" min=1 max=12 name="Acquisition-month" id="Acquisition-month" required>
+            <input type="number" min=1 max=12 name="Acquisition-month" id="Edit-Acquisition-month" required>
             <br>
             <label>Chemistry</label>
-            <!-- <input type="text" name="Chemistry" id="Chemistry"> -->
-            <select name="Chemistry" id="Chemistry">
+            <!-- <input type="text" name="Chemistry" id="Edit-Chemistry"> -->
+            <select name="Chemistry" id="Edit-Chemistry">
               <option value="">Select chemistry</option>
               <option value="LiHv">LiHv</option>
               <option value="LiPo">LiPo</option>
               <option value="LiIon">LiIon</option>
               <option value="LiFe">LiFe</option>
+              <option value="LiFePo">LiFePo</option>
               <option value="Pb">Pb</option>
               <option value="NiMH/Cd">NiMH/Cd</option>
               <option value="ULiHv">ULiHv</option>
+              <option value="Unknown">Unknown</option>
               <option value="Other">Other</option>
             </select>
             <br>
             <label>Cycle schedule</label>
-            <input type="text" name="Cycle-schedule" id="Cycle-schedule">
+            <input type="text" name="Cycle-schedule" id="Edit-Cycle-schedule">
             <br>
             <label>Notes</label>
-            <input type="text" name="Notes" id="Notes">
+            <input type="text" name="Notes" id="Edit-Notes">
 
         </div>
         <button type="submit">Edit</button>
@@ -108,7 +110,32 @@
 
             // code to set max rows
             row_count = document.getElementsByClassName("dataframe")[0]["tBodies"][0].childElementCount -1
-            document.getElementById("Row-number").max = row_count
+            document.getElementById("Edit-Row-number").max = row_count
+        }
+
+        function update_edit_battery(row_number) {
+            // update_edit_battery is code to auto fill edit rows for ease of use
+            console.log("running update_edit_battery")
+
+            children = document.getElementsByClassName("dataframe")[0]["tBodies"][0].children
+            row_value = children[row_number]
+            row_values = row_value.children
+            // console.log(row_number)
+            // console.log(row_value)
+            // console.log(row_values)
+            // console.log(row_values[1].innerHTML)
+            // console.log(row_values[2].innerHTML)
+            // console.log(row_values[3].innerHTML)
+            // console.log(row_values[4].innerHTML)
+            // console.log(row_values[5].innerHTML)
+            // console.log(row_values[6].innerHTML)
+
+            document.getElementById("Edit-Battery-name").value = row_values[1].innerHTML
+            document.getElementById("Edit-Acquisition-year").value = row_values[2].innerHTML
+            document.getElementById("Edit-Acquisition-month").value = row_values[3].innerHTML
+            document.getElementById("Edit-Chemistry").value = row_values[4].innerHTML
+            document.getElementById("Edit-Cycle-schedule").value = row_values[5].innerHTML
+            document.getElementById("Edit-Notes").value = row_values[6].innerHTML
         }
     </script>
 {% endblock %}
