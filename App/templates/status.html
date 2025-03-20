@@ -5,20 +5,24 @@
 
     <h2>Latest status</h2>
 
-    {% if latest_data != "No data yet available" %}
-    {{ latest_data|safe }}
-    {% else %}
-    <p>No data yet available</p>
-    {% endif %}
+    <div id="latest-status">
+        {% if latest_data != "No data yet available" %}
+        {{ latest_data|safe }}
+        {% else %}
+        <p>No data yet available</p>
+        {% endif %}
+    </div>
 
 
     <h2>All historic statuses</h2>
 
-    {% if data != "No data yet available" %}
-    {{ data|safe }}
-    {% else %}
-    <p>No data yet available</p>
-    {% endif %}
+    <div id="historic-statuses">
+        {% if data != "No data yet available" %}
+        {{ data|safe }}
+        {% else %}
+        <p>No data yet available</p>
+        {% endif %}
+    </div>
 
     <h2>Add status</h2>
 
@@ -122,6 +126,10 @@
             }
             time_formatted = [hour, minute, second].join(":")
             document.getElementById('Time').value = time_formatted
+
+            // code to set max rows
+            row_count = document.getElementById("historic-statuses").children[0]["tBodies"][0].childElementCount -1
+            document.getElementById("Row-number").max = row_count
         }
     </script>
 
