@@ -104,7 +104,7 @@ def batteries():
         elif submit_type == "delete":
             form_data = request.form
             print(form_data)
-            row = int(form_data["Row-number"])
+            row = int(form_data["Row-number-deletion"])
 
             # deleting row
             df = df.drop([row])
@@ -201,7 +201,7 @@ def locations():
         elif submit_type == "delete":
             form_data = request.form
             print(form_data)
-            row = int(form_data["Row-number"])
+            row = int(form_data["Row-number-deletion"])
 
             # deleting row
             df = df.drop([row])
@@ -308,7 +308,7 @@ def status():
         elif submit_type == "delete":
             form_data = request.form
             print(form_data)
-            row = int(form_data["Row-number"])
+            row = int(form_data["Row-number-deletion"])
 
             # deleting row
             df = df.drop([row])

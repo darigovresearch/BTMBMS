@@ -95,7 +95,7 @@
 
     <form action="/status?submit=delete" method="POST">
         <label>Row</label>
-        <input type="number" min=0 name="Row-number" id="Row-number" required>
+        <input type="number" min=0 name="Row-number-deletion" id="Row-number-deletion" required>
         <button>Delete</button>
     </form>
 
@@ -130,6 +130,7 @@
             // code to set max rows
             row_count = document.getElementById("historic-statuses").children[0]["tBodies"][0].childElementCount -1
             document.getElementById("Row-number").max = row_count
+            document.getElementById("Row-number-deletion").max = row_count
         }
     </script>
 
