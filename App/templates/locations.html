@@ -5,19 +5,23 @@
 
     <h2>Latest locations</h2>
 
-    {% if latest_data != "No data yet available" %}
-    {{ latest_data|safe }}
-    {% else %}
-    <p>No data yet available</p>
-    {% endif %}
+    <div id="latest-locations">
+        {% if latest_data != "No data yet available" %}
+        {{ latest_data|safe }}
+        {% else %}
+        <p>No data yet available</p>
+        {% endif %}
+    </div>
 
     <h2>All historic locations</h2>
 
-    {% if data != "No data yet available" %}
-    {{ data|safe }}
-    {% else %}
-    <p>No data yet available</p>
-    {% endif %}
+    <div id="historic-locations">
+        {% if data != "No data yet available" %}
+        {{ data|safe }}
+        {% else %}
+        <p>No data yet available</p>
+        {% endif %}
+    </div>
 
     <h2>Add location</h2>
 
@@ -102,6 +106,10 @@
             var day = today.getDate();
             date_formatted = [year, month, day].join("-")
             document.getElementById('Start').value = date_formatted
+
+            // code to set max rows
+            row_count = document.getElementById("historic-locations").children[0]["tBodies"][0].childElementCount -1
+            document.getElementById("Row-number").max = row_count
         }
     </script>
 {% endblock %}
