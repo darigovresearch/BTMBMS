@@ -96,7 +96,11 @@
     <form action="/batteries?submit=delete" method="POST">
         <label>Row</label>
         <input type="number" min=0 name="Row-number-deletion" id="Row-number-deletion" required>
-        <button>Delete</button>
+        <br>
+        <input type="checkbox" id="confirm-deletion" name="confirm-deletion" required />
+        <label for="confirm-deletion">I confirm that there is no going back after clicking delete</label>
+        <br>
+        <button disabled id="delete">Delete</button>
     </form>
 
     <script>
@@ -112,6 +116,9 @@
             row_count = document.getElementsByClassName("dataframe")[0]["tBodies"][0].childElementCount -1
             document.getElementById("Edit-Row-number").max = row_count
             document.getElementById("Row-number-deletion").max = row_count
+
+            // interval for deletion button
+            interval = setInterval(check_deletion, 1000);
         }
 
         function update_edit_battery(row_number) {
@@ -138,5 +145,20 @@
             document.getElementById("Edit-Cycle-schedule").value = row_values[5].innerHTML
             document.getElementById("Edit-Notes").value = row_values[6].innerHTML
         }
+
+        function check_deletion() {
+            // check_deletion is code to check if the confirm-deletion button is enabled
+            status_value = document.getElementById("confirm-deletion").checked
+            // console.log(status_value)
+            if (status_value == true) {
+                document.getElementById("delete").disabled = false
+                // console.log("confirm-deletion is checked")
+            } else {
+
+                // console.log("confirm-deletion is NOT checked")
+                document.getElementById("delete").disabled = true
+            }
+        }
+
     </script>
 {% endblock %}
