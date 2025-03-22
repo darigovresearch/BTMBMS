@@ -60,13 +60,13 @@
 
     <form action="/status?submit=edit" method="POST">
         <label>Row</label>
-        <input type="number" min=0 name="Row-number" id="Row-number" required>
+        <input type="number" min=0 name="Row-number" id="Edit-Row-number" required onchange="update_edit_status(document.getElementById('Edit-Row-number').value)">
         <br>
         <label>Battery name</label>
         <!-- <input type="text" name="Battery-name" id="Battery-name" required> -->
         <!-- <label for="Battery-name">Select battery:</label> -->
 
-        <select name="Battery-name" id="Battery-name">
+        <select name="Battery-name" id="Edit-Battery-name">
           {% if dropdown_values != "No data yet available" %}
           {{ dropdown_values|safe }}
           {% else %}
@@ -76,16 +76,16 @@
         </select>
         <br>
         <label>SOC</label>
-        <input type="text" name="SOC" id="SOC" required>
+        <input type="text" name="SOC" id="Edit-SOC" required>
         <br>
         <label>Date</label>
-        <input type="date" name="Date" id="Date" required>
+        <input type="date" name="Date" id="Edit-Date" required>
         <br>
         <label>Time</label>
-        <input type="time" name="Time" id="Time" step="1" required>
+        <input type="time" name="Time" id="Edit-Time" step="1" required>
         <br>
         <label>Notes</label>
-        <input type="text" name="Notes" id="Notes">
+        <input type="text" name="Notes" id="Edit-Notes">
         <br>
         <button>Edit</button>
     </form>
@@ -133,11 +133,34 @@
 
             // code to set max rows
             row_count = document.getElementById("historic-statuses").children[0]["tBodies"][0].childElementCount -1
-            document.getElementById("Row-number").max = row_count
+            document.getElementById("Edit-Row-number").max = row_count
             document.getElementById("Row-number-deletion").max = row_count
 
             // interval for deletion button
             interval = setInterval(check_deletion, 1000);
+        }
+
+        function update_edit_status(row_number) {
+            // update_edit_status is code to auto fill edit rows for ease of use
+            console.log("running update_edit_status")
+
+            children = document.getElementById("historic-statuses").children[0]["tBodies"][0].children
+            row_value = children[row_number]
+            row_values = row_value.children
+            // console.log(row_number)
+            // console.log(row_value)
+            // console.log(row_values)
+            // console.log(row_values[1].innerHTML)
+            // console.log(row_values[2].innerHTML)
+            // console.log(row_values[3].innerHTML)
+            // console.log(row_values[4].innerHTML)
+            // console.log(row_values[5].innerHTML)
+
+            document.getElementById("Edit-Battery-name").value = row_values[1].innerHTML
+            document.getElementById("Edit-SOC").value = row_values[2].innerHTML
+            document.getElementById("Edit-Date").value = row_values[3].innerHTML
+            document.getElementById("Edit-Time").value = row_values[4].innerHTML
+            document.getElementById("Edit-Notes").value = row_values[5].innerHTML
         }
 
         function check_deletion() {
