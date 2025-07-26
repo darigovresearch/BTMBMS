@@ -1,7 +1,15 @@
-Installation
-============
-
+# Installation
 - Clone the repository
-- Install the requirements
+- Generate env
+```
+python -m venv env
+```
+- Activate env
+```
+source env/bin/activate
+```
 
-``pip install -r requirements.txt``
+- Install the requirements 
+```
+pip install -r requirements.txt
+```
