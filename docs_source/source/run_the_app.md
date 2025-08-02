@@ -1,5 +1,8 @@
 # Run the app
 - Go to the `App` directory
+```
+cd App
+```
 - Run the app
 
 ```
