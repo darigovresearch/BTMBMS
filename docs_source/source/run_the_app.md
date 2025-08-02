@@ -1,4 +1,9 @@
 # Run the app
+
+- Activate env
+```
+source env/bin/activate
+```
 - Go to the `App` directory
 ```
 cd App
@@ -8,4 +13,5 @@ cd App
 ```
 python app.py
 ```
-- Go to http://localhost:8766/
+- Go to 
+<a href="http://localhost:8766/" target="_blank">http://localhost:8766/</a>

@@ -1,7 +1,9 @@
 # Documentation
 Documentation can be found at the following link and there is a local copy in your `docs` folder.
 
-https://darigovresearch.github.io/BTMBMS/
+<a href="https://darigovresearch.github.io/BTMBMS/
+" target="_blank">https://darigovresearch.github.io/BTMBMS/
+</a>
 
 ## Editing the documentation
 
