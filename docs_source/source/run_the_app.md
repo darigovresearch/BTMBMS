@@ -15,3 +15,8 @@ python app.py
 ```
 - Go to 
 <a href="http://localhost:8766/" target="_blank">http://localhost:8766/</a>
+
+## Configuring
+If you wish to have the app run automatically on startup of your device do the following steps
+
+TODO
