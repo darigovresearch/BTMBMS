@@ -53,3 +53,13 @@ html_theme = 'alabaster'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# Add custom CSS files for copy-to-clipboard styling
+html_css_files = [
+    'copy-button.css',
+]
+
+# Add custom JavaScript files for copy-to-clipboard functionality
+html_js_files = [
+    'copy-button.js',
+]
