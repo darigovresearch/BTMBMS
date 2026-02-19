@@ -14,23 +14,32 @@ document.addEventListener('DOMContentLoaded', function() {
         wrapper.appendChild(codeBlock);
         wrapper.appendChild(copyButton);
         
+        let resetTimeout;
+        
         copyButton.addEventListener('click', function() {
+            clearTimeout(resetTimeout);
+            
             const codeElement = codeBlock.querySelector('pre');
-            const codeText = codeElement.textContent;
+            const codeText = codeElement ? codeElement.textContent : '';
             
             navigator.clipboard.writeText(codeText).then(function() {
                 copyButton.textContent = 'Copied';
                 copyButton.classList.add('copied');
+                copyButton.classList.remove('copy-failed');
                 
-                setTimeout(function() {
+                resetTimeout = setTimeout(function() {
                     copyButton.textContent = 'Copy';
                     copyButton.classList.remove('copied');
                 }, 1500);
             }).catch(function(err) {
                 console.error('Failed to copy text: ', err);
                 copyButton.textContent = 'Failed';
-                setTimeout(function() {
+                copyButton.classList.remove('copied');
+                copyButton.classList.add('copy-failed');
+                
+                resetTimeout = setTimeout(function() {
                     copyButton.textContent = 'Copy';
+                    copyButton.classList.remove('copy-failed');
                 }, 1500);
             });
         });
